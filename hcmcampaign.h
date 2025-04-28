@@ -155,4 +155,9 @@ public:
     string printResult();
 };
 
+// struct Node {
+//     int data;       
+//     Node* next;     
+// };
+
 #endif

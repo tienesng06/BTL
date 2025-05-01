@@ -24,8 +24,39 @@ class UnitList;
 class Army;
 class TerrainElement;
 
-class Vehicle;
-class Infantry;
+class Vehicle : public Unit{
+    private:
+        VehicleType vehicleType;
+    public:
+        Vehicle ( int quantity , int weight , const Position pos , VehicleType
+        vehicleType ) : Unit(quantity , weight , pos){
+            this->vehicleType = vehicleType;
+        }
+
+        int getAttackScore();
+        string str();
+        VehicleType getVehicleType() const;
+        int getQuantity() const;
+        void setQuantity(int quantity);
+};
+class Infantry : public Unit{
+    private:
+        InfantryType infantryType;
+    public:
+        bool perfectNumber(int n);
+        int personalNumber(int n);
+        int getAttackScore();
+        string str();
+        InfantryType getInfantryType() const;
+        int getQuantity() const;
+        void setQuantity(int quantity);
+
+
+        Infantry ( int quantity , int weight , const Position pos , InfantryType
+            infantryType ) : Unit(quantity, weight, pos){
+                this->infantryType = infantryType;
+        }
+};
 
 class LiberationArmy;
 class ARVN;
@@ -100,7 +131,7 @@ protected:
     Position pos;
 
 public:
-    Unit(int quantity, int weight, Position pos);
+    Unit(int quantity, int weight, const Position pos);
     virtual ~Unit();
     virtual int getAttackScore() = 0;
     Position getCurrentPosition() const;

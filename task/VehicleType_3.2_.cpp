@@ -1,7 +1,19 @@
 #include "main.h"
 #include "hcmcampaign.h"
 
+class Unit
+{
+protected:
+    int quantity, weight;
+    Position pos;
 
+public:
+    Unit(int quantity, int weight, const Position pos);
+    virtual ~Unit();
+    virtual int getAttackScore() const = 0;
+    Position getCurrentPosition() const;
+    virtual string str() const = 0;
+};
 
 enum VehicleType
 {
@@ -34,6 +46,18 @@ class Vehicle : public Unit{
                     + "weight = " + to_string(weight) + ", "
                     + "pos = " + pos.str() + "]";  
         }
+
+        VehicleType getVehicleType() const{
+            return vehicleType;
+        }
+
+        int getQuantity() const{
+            return quantity;
+        }
+
+        void setQuantity(int quantity){
+            this->quantity = quantity;
+        }
         
-                                                                                                            
+                                                                                                        
 };

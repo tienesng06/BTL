@@ -17,5 +17,6 @@ class Unit{
     virtual int getAttackScore() = 0;
     Position getCurrentPosition () const ;
     virtual string str () const = 0;
+    
 };
 

@@ -10,6 +10,13 @@ class Infantry : public Unit{
     private:
         InfantryType infantryType;
     public:
+
+        Infantry ( int quantity , int weight , const Position pos , InfantryType
+            infantryType ) : Unit(quantity, weight, pos){
+                this->infantryType = infantryType;
+        }
+        
+        
         bool perfectNumber(int n)
         {
             int k = sqrt(n);
@@ -34,10 +41,7 @@ class Infantry : public Unit{
             return n;
         }
 
-        Infantry ( int quantity , int weight , const Position pos , InfantryType
-        infantryType ) : Unit(quantity, weight, pos){
-            this->infantryType = infantryType;
-        }
+        
     
         int getAttackScore(){
             int type = static_cast<int>(infantryType);
@@ -60,6 +64,18 @@ class Infantry : public Unit{
                     + "quantity = "+ to_string(quantity) + ", "
                     + "weight = " + to_string(weight) + ", "
                     + "pos = " + pos.str() + "]";  
+        }
+
+        InfantryType getInfantryType() const{
+            return infantryType;
+        }
+
+        int getQuantity() const{
+            return quantity;
+        }
+
+        void setQuantity(int quantity){
+            this->quantity = quantity;
         }
 
 

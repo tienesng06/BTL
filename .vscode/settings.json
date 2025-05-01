@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "iostream": "cpp",
-        "cstring": "cpp"
-    }
+        "cstring": "cpp",
+        "iosfwd": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "enabledIfIncludesResolve"
 }

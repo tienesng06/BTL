@@ -3,19 +3,22 @@
 #include "InfantryType_3.3_.cpp"
 #include "VehicleType_3.2_.cpp"
 class UnitList{
-    private:
+    public:
         struct Node{
             Unit* unit;
             Node* next;
-            Node(Unit* u){
+            Node(Unit* unit){
                 this->unit = unit;
                 this->next = nullptr;
             }
         };
+    private:
         Node* head;
+        Node* tail;
         int capacity;
         int countVehicle;
         int countInfantry;
+        static int size;
     public:
         UnitList(int capacity){
             this-> head = nullptr;
@@ -95,8 +98,8 @@ class UnitList{
         bool isContain(InfantryType infantryType){
             for (Node* cur = head; cur; cur = cur->next)
             {
-                Infantry* v = dynamic_cast<Infantry*>(cur->unit);
-                if (v && v->getInfantryType() == infantryType)
+                Infantry* i = dynamic_cast<Infantry*>(cur->unit);
+                if (i && i->getInfantryType() == infantryType)
                     return true;
             }
             return false;
@@ -114,5 +117,35 @@ class UnitList{
                 oss << cur->unit->str();
                 first = false;
             }
+        }
+        Node* getHead() const { 
+            return head; 
+        }
+
+        bool remove(Unit* unit) {
+            Node* prev = nullptr;
+            Node* cur = head;
+            size = countInfantry + countVehicle;
+            while (cur) {
+                if (cur->unit == unit) {
+                    if (prev)
+                        prev->next = cur->next;
+                    else
+                        head = cur->next;
+        
+                    if (dynamic_cast<Infantry*>(unit))
+                        --countInfantry;
+                    else if (dynamic_cast<Vehicle*>(unit))
+                        --countVehicle;
+        
+                    --size;
+                    delete cur;
+                    return true;
+                }
+                prev = cur;
+                cur = cur->next;
+            }
+        
+            return false;
         }
 };

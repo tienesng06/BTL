@@ -54,8 +54,8 @@ class Infantry : public Unit{
             else if (personal_number < 3)
                 quantity -= quantity*0.1;
             else quantity = quantity;
+
             score = type*56 + quantity * weight;
-            
             return score;
         }
 
